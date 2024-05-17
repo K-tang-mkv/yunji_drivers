@@ -1230,7 +1230,7 @@ static int __init axnet_pci_init(void)
 	axnet_host_setup_bar0_md(axnet);
 #endif
 
-	netif_napi_add(ndev, &axnet->napi, axnet_host_poll, AXNET_NAPI_WEIGHT);
+	netif_napi_add(ndev, &axnet->napi, axnet_host_poll);
 
 	ndev->mtu = AXNET_DEFAULT_MTU;
 

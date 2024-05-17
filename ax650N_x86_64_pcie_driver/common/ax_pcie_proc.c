@@ -179,7 +179,7 @@ static int ax_pcie_proc_read(struct seq_file *s, void *v)
 
 static int ax_pcie_proc_open(struct inode *inode, struct file *file)
 {
-	struct pcie_proc_entry *item = PDE_DATA(inode);
+	struct pcie_proc_entry *item = (struct pcie_proc_entry*)inode->i_private;
 	return single_open(file, item->read, item);
 }
 
