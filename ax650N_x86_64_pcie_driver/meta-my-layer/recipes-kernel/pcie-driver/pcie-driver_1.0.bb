@@ -70,8 +70,6 @@ do_compile() {
 }
 
 do_install() {
-    echo "D is: ${D}" >> /media/zhenjie/new256/nxp/release/meta-my-layer/test.log
-    echo "PN is: ${PN}" >> /media/zhenjie/new256/nxp/release/meta-my-layer/test.log
     install -d ${S}/extra_ko
     install -m 0644 ${S}/*.ko ${S}/extra_ko
 }

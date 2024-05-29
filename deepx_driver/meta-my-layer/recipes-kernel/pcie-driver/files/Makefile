@@ -14,12 +14,11 @@ ccflags-y       += -I$(PWD)/include
 #EXTRA_CFLAGS += -DDUMP_DESC_TABLE
 #EXTRA_CFLAGS += -DDMA_DESC_SRAM
 
-# Driver Version
-V_FILE:=inlcude/version.h
-V_MAJOR=$(shell grep "\#define DRV_MOD_MAJOR" include/version.h | sed "s/\#define DRV_MOD_MAJOR//g" | tr -d '\t' | tr -d ' ')
-V_MINOR=$(shell grep "\#define DRV_MOD_MINOR" include/version.h | sed "s/\#define DRV_MOD_MINOR//g" | tr -d '\t' | tr -d ' ')
-V_PATCHLEVEL=$(shell grep "\#define DRV_MOD_PATCHLEVEL" include/version.h | sed "s/\#define DRV_MOD_PATCHLEVEL//g" | tr -d '\t' | tr -d ' ')
-DRV_VERSION=$(V_MAJOR).$(V_MINOR).$(V_PATCHLEVEL)
+DRV_VERSION=0.0.1
+export BUILDSYSTEM_DIR=/media/zhenjie/new256/nxp/release/bld-xwayland/tmp/work/imx8mnevk-poky-linux/linux-imx/6.6.3+git/build
+export ARCH=arm64
+export CROSS_COMPILE := aarch64-poky-linux-
+export SYSROOT := /media/zhenjie/new256/nxp/release/bld-xwayland/tmp/work/imx8mnevk-poky-linux/imx-image-core/1.0/recipe-sysroot
 
 ifneq ($(KERNELRELEASE),)
 	$(DX_PCIE_MODULE)-objs :=	\
@@ -35,7 +34,6 @@ ifneq ($(KERNELRELEASE),)
 		dx_cdev_events.o
 	obj-m += $(DX_PCIE_MODULE).o
 else
-	BUILDSYSTEM_DIR:=/lib/modules/$(shell uname -r)/build
 	PWD:=$(shell pwd)
 
 default: all
@@ -60,6 +58,7 @@ help:
 all :
 	@echo "*-------------------------------------------------------------*"
 	@echo "* Compiling DeepX PCIe driver module [Version:$(DRV_VERSION)] *"
+	@echo "* $(PWD) wwwwwwwwwwwwwwwwwwwwwwwwwwww*"
 	@echo "*-------------------------------------------------------------*"
 	$(MAKE) -C $(BUILDSYSTEM_DIR) M=$(PWD) modules
 

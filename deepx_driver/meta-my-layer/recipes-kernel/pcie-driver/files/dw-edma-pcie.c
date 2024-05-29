@@ -255,7 +255,7 @@ static int dx_dma_pcie_probe(struct pci_dev *pdev,
 
 	pci_set_master(pdev);
 	/* AER (Advanced Error Reporting) hooks */
-	pci_enable_pcie_error_reporting(pdev);
+	// pci_enable_pcie_error_reporting(pdev);
 
 	/* DMA configuration */
 	err = dma_set_mask(&pdev->dev, DMA_BIT_MASK(64));
@@ -318,7 +318,7 @@ static int dx_dma_pcie_probe(struct pci_dev *pdev,
 	/* Data structure initialization */
 	chip->dw = dw;
 	chip->dev = dev;
-	chip->id = pdev->devfn;
+	// chip->id = pdev->devfn;
 	// chip->irq = pdev->irq;
 
 	dw->mf = vsec_data.mf;
@@ -494,7 +494,7 @@ static void dx_dma_pcie_remove(struct pci_dev *pdev)
 		pci_warn(pdev, "can't remove device properly: %d\n", err);
 
 	/* AER (Advanced Error Reporting) hooks */
-	pci_disable_pcie_error_reporting(pdev);
+	// pci_disable_pcie_error_reporting(pdev);
 
 	/* Remove Cdev */
 	xpdev_release_interfaces(chip->dw->xpdev);
