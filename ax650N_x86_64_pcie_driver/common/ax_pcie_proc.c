@@ -347,16 +347,17 @@ static struct ctl_table ax_pcie_msg_table[] = {
 static struct ctl_table ax_pcie_dir_table[] = {
 	{
 	 .procname = "ax_pcie",
-	 .mode = 0555,
-	 .child = ax_pcie_msg_table},
+	 .mode = 0555},
 	{}
 };
 
 static struct ctl_table ax_pcie_root_tbl[] = {
 	{
 	 .procname = "dev",
-	 .mode = 0555,
-	 .child = ax_pcie_dir_table},
+	 .mode = 0644,
+	 .data = &pcie_proc.proc_level,
+	 .maxlen = sizeof(pcie_proc.proc_level),
+	 .proc_handler = proc_dointvec},
 	{}
 };
 
@@ -385,7 +386,7 @@ int ax_pcie_proc_init(char *entry_name)
 	if (ret == NULL)
 		proc_trace(PCIE_PROC_ERR, "ax pcie proc create failded");
 
-	ax_pcie_sysctl_header = register_sysctl_table(ax_pcie_root_tbl);
+	ax_pcie_sysctl_header = register_sysctl_sz("/proc/ax_proc", ax_pcie_root_tbl, ARRAY_SIZE(ax_pcie_root_tbl));
 	if (!ax_pcie_sysctl_header)
 		return -ENOMEM;
 
