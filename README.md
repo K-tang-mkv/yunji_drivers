@@ -7,7 +7,9 @@
 | intel| x86_64 | Ubuntu 20.04|5.4.0-182-generic| ![pass](https://img.shields.io/badge/pass-green)   |![pass](https://img.shields.io/badge/pass-green)|
 | rk3588 | aarch64|Ubuntu 20.04| 5.10.110-rockchip-rk3588| ![pass](https://img.shields.io/badge/pass-green)|![pass](https://img.shields.io/badge/pass-green)|
 | intel|x86_64 | CentOS 9      |5.14.0-446.el9.x86_64 |    ![pass](https://img.shields.io/badge/pass-green)  | ![pass](https://img.shields.io/badge/pass-green)
-|
+| intel|x86_64 | Ubuntu 24.04     |6.8.0-31-generic |    ![pass](https://img.shields.io/badge/pass-green)  | 
+| Xilinx|aarch64 | petalinux    |5.4.0 |    ![pass](https://img.shields.io/badge/pass-green)  | 
+| nxp|aarch64 | ubuntu    |6.6|    ![pass](https://img.shields.io/badge/pass-green)  | 
 
 ## AX650 linux
 若主板是AX650的主板，那么无需先加载驱动，可直接启动算力卡。  
@@ -75,5 +77,32 @@
 ![ssh](./assets/suanlika/16.png)  
 默认密码是`123456`。
 
-### Centos 9 内核版本 5.14.0-446.el9.x86_64
-centos的算力卡启动流程和ubuntu基本一致，`x86_pcie.tgz` 替换成 `x86_64_pcie_centos9_kernel_5.14.0-446.el9.x86_64.tar.gz`即可，
+### Centos 9 内核 5.14.0-446.el9.x86_64
+centos的算力卡启动流程和ubuntu20.04基本一致，`x86_pcie.tgz` 替换成 `x86_64_pcie_centos9_kernel_5.14.0-446.el9.x86_64.tar.gz`即可
+
+### Ubuntu 24.04 内核 6.8
+启动流程与Ubuntu20.4一致，`x86_pcie.tgz` 替换成 `x86_64_pcie_ubuntu24.04_kernel_6.8.tar.gz`即可
+
+
+## 赛灵思
+### petalinux 内核 5.4
+1. 检测算力卡是否被检测到了  
+![lspci](./assets/xlinx/1.png)  
+出现```1f4b:0650```的标志，说明检测到了。  
+
+2. 将我们提供的驱动和启动文件解压。    
+![tar](./assets/xlinx/2.png)  
+
+3. 进入ko文件中，执行脚本文件启动算力卡
+![sh](./assets/xlinx/3.png)    
+等待一分钟让算力卡正常启动，算力卡会自动创建虚拟网卡IP为192.168.1.1。  
+
+4. 执行本地虚拟网卡创建脚本
+![sh](./assets/xlinx/4.png)  
+本地会创建虚拟网卡，IP为192.168.1.2  
+
+5. 测试与算力卡的通信  
+![sh](./assets/xlinx/5.png)  
+通信正常
+
+## NXP
