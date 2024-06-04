@@ -10,7 +10,7 @@
 | intel|x86_64 | Ubuntu 24.04     |6.8.0-31-generic |    ![pass](https://img.shields.io/badge/pass-green)  | ![pass](https://img.shields.io/badge/pass-green)|
 | Xilinx|aarch64 | petalinux    |5.4.0 |    ![pass](https://img.shields.io/badge/pass-green)  |  ![pass](https://img.shields.io/badge/pass-green) |
 | nxp|aarch64 | ubuntu    |6.6|      | ![pass](https://img.shields.io/badge/pass-green)
-| rk3568|aarch64 | ubuntu 20.4    |4.19.232|    ![pass](https://img.shields.io/badge/pass-green)  | ![pass](https://img.shields.io/badge/pass-green)|
+| rk3568|aarch64 | ubuntu 20.4    |5.10.160|    ![pass](https://img.shields.io/badge/pass-green)  | ![pass](https://img.shields.io/badge/pass-green)|
 
 ## AX650 linux
 若主板是AX650的主板，那么无需先加载驱动，可直接启动算力卡。  
